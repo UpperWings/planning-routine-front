@@ -10,7 +10,7 @@ const login = (username, password) => {
   const config = {
     method: 'POST',
     body: JSON.stringify(body),
-    headers: {'Content-Type': 'application/json'}
+    headers: {'Content-Type': 'application/json'},
   };
   
   const data = send(url, config);
@@ -30,7 +30,7 @@ const createUser = async (username, password) => {
   const config = {
     method: 'POST',
     body: JSON.stringify(body),
-    headers: {'Content-Type': 'application/json'}
+    headers: {'Content-Type': 'application/json'},
   };
   
   const response = await fetch(url, config);
@@ -45,8 +45,12 @@ const createUser = async (username, password) => {
 const send = async (url, config) => {
   const response = await fetch(url, config);
   
-  if(!response.ok)
+  if(!response.ok){
+    const resText = await response.text();
+    console.log('res text', resText);
+    console.log('obje response', response);
     throw new Error('Erro no login');
+  }
 
   return await response.json().catch((error) => {
     throw new Error('Erro no login: ' + error);
