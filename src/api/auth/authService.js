@@ -21,7 +21,7 @@ const login = (username, password) => {
 
 const createUser = async (username, password) => {
   const host = process.env.REACT_APP_HOST;
-  const path = '/login';
+  const path = '/user';
   const url = host + path;
   const body = {
     username: username,
